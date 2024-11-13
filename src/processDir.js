@@ -71,7 +71,8 @@ rl.on('close', () => {
 /*
    dir /S /B | findstr /V /R /C:"\\\." | findstr /V /R /C:"\\node_modules" | findstr /V /R /C:"\.tmp"
 
-   node src/indexDir TV-5T.dir.txt 5 2 0 > TV-5T.redis
-
+   node src/processDir.js data/TV-500M.dir.txt 1 TV-500M 2 0 > data/TV-500M.redis
    node src/processDir.js data/TV-1T.dir.txt 2 TV-1T 2 0 > data/TV-1T.redis
+   node src/processDir.js data/TV-2T.dir.txt 3 TV-2T 2 0 > data/TV-2T.redis
+   node src/processDir.js data/TV-5T.dir.txt 4 TV-5T 2 0 > data/TV-5T.redis
 */
