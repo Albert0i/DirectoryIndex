@@ -1,6 +1,6 @@
 import express from 'express';
-import { redisClient } from './redis/redisClient.js'
 const router = express.Router();
+import { redisClient } from './redis/redisClient.js';
 
 router.get('/', async (req, res) => {
   await redisClient.ping()
