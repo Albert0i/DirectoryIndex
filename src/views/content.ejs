@@ -8,14 +8,16 @@
 </head>
 <body class="bg-gray-100">
   <div class="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
-    <h1 class="text-3xl font-bold text-center text-gray-800">Content</h1>
-    <ul class="mt-6 space-y-2">
+    <h1 class="text-3xl font-bold text-left text-gray-800">Content (<%=keys.length %> matched)</h1>
+    <ol class="mt-6 space-y-2 list-decimal list-inside">
       <% keys.forEach(key => { %>
-        <li class="text-center">
-          <a href="/content/<%= key %>" class="text-blue-500 hover:underline"><%= key %></a>
+        <li class="text-left">
+          <a href="/detail/<%= key %>" class="text-blue-500 hover:underline">
+            <%= key.replace("DIRINDEX:INDEX:", "") %>
+          </a>
         </li>
       <% }) %>
-    </ul>
+    </ol>
   </div>
 </body>
 </html>

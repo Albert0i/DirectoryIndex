@@ -24,4 +24,20 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-await disconnect()
+// Handle graceful shutdown
+const gracefulShutdown = () => {
+    console.log('Received termination signal, shutting down gracefully');
+    // Disconnect from Redis
+    disconnect();
+    console.log('Cleanup complete, exiting process');
+    process.exit(0);
+};
+
+// Listen for termination signals
+process.on('SIGTERM', gracefulShutdown);
+process.on('SIGINT', gracefulShutdown);
+
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught exception:', err);
+  gracefulShutdown();
+});

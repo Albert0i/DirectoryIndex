@@ -9,11 +9,31 @@
 <body class="bg-gray-100">
   <div class="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
     <h1 class="text-3xl font-bold text-center text-gray-800">Directory</h1>
-    <ul class="mt-6 space-y-2">
+    <table class="min-w-full bg-white mt-6"> 
+      <thead> 
+        <tr> 
+          <th class="w-1/4 px-4 py-2 text-left bg-gray-100">Name</th> 
+          <th class="w-1/4 px-4 py-2 text-left bg-gray-100">Model</th> 
+          <th class="w-1/4 px-4 py-2 text-left bg-gray-100">Capacity</th> 
+          <th class="w-1/4 px-4 py-2 text-left bg-gray-100">Description</th> 
+        </tr> 
+      </thead> 
+      <tbody> 
+        <% keys.forEach(key => { %> 
+          <tr class="border-t"> 
+            <td class="px-4 py-2"><%= key.name %></td> 
+            <td class="px-4 py-2"><%= key.model %></td> 
+            <td class="px-4 py-2"><%= key.capacity %></td> 
+            <td class="px-4 py-2"><%= key.description %></td> 
+          </tr> 
+          <% }) %> 
+      </tbody> 
+    </table>
+    <!-- <ol class="mt-6 space-y-2 list-decimal list-inside">
       <% keys.forEach(key => { %>
-        <li class="text-center"><%= key %></li>
+        <li class="text-left"><%= key %></li>
       <% }) %>
-    </ul>
+    </ol> -->
   </div>
 </body>
 </html>
