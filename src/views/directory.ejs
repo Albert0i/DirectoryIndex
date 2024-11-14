@@ -9,9 +9,11 @@
 <body class="bg-gray-100">
   <div class="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
     <h1 class="text-3xl font-bold text-center text-gray-800">Directory</h1>
+    <button onclick="window.history.back()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600">Back</button>
     <table class="min-w-full bg-white mt-6"> 
       <thead> 
         <tr> 
+          <th class="w-1/4 px-4 py-2 text-left bg-gray-100">Id</th>
           <th class="w-1/4 px-4 py-2 text-left bg-gray-100">Name</th> 
           <th class="w-1/4 px-4 py-2 text-left bg-gray-100">Model</th> 
           <th class="w-1/4 px-4 py-2 text-left bg-gray-100">Capacity</th> 
@@ -19,21 +21,18 @@
         </tr> 
       </thead> 
       <tbody> 
-        <% keys.forEach(key => { %> 
+        <% hashes.forEach(hash => { %> 
           <tr class="border-t"> 
-            <td class="px-4 py-2"><%= key.name %></td> 
-            <td class="px-4 py-2"><%= key.model %></td> 
-            <td class="px-4 py-2"><%= key.capacity %></td> 
-            <td class="px-4 py-2"><%= key.description %></td> 
+            <td class="px-4 py-2"><%= hash.id %></td>
+            <td class="px-4 py-2"><%= hash.name %></td> 
+            <td class="px-4 py-2"><%= hash.model %></td> 
+            <td class="px-4 py-2"><%= hash.capacity %></td> 
+            <td class="px-4 py-2"><%= hash.description %></td> 
           </tr> 
           <% }) %> 
       </tbody> 
     </table>
-    <!-- <ol class="mt-6 space-y-2 list-decimal list-inside">
-      <% keys.forEach(key => { %>
-        <li class="text-left"><%= key %></li>
-      <% }) %>
-    </ol> -->
+    <button onclick="window.history.back()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600">Back</button>
   </div>
 </body>
 </html>

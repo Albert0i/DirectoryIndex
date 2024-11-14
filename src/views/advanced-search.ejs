@@ -9,14 +9,15 @@
 <body class="bg-gray-100">
   <div class="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
     <h1 class="text-3xl font-bold text-center text-gray-800">Advanced Search</h1>
-    <form action="/advanced-search/search" method="POST" class="mt-6">
+    <form action="/advanced-search/search" method="GET" class="mt-6">
       <div class="flex flex-col space-y-2">
         <% for (let i = 0; i < 6; i++) { %>
           <input type="text" name="keywords[]" placeholder="Keyword <%= i + 1 %>" class="border p-2 rounded focus:outline-none focus:border-blue-500">
         <% } %>
       </div>
-      <button type="submit" class="bg-blue-500 text-white p-2 rounded mt-4 w-full hover:bg-blue-600">Search</button>
+      <button type="submit" class="bg-blue-500 text-white p-2 rounded mt-4 hover:bg-blue-600" onClick="alert('Not yet implement...'); return false">Search</button>
     </form>
+    <button onclick="window.history.back()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600">Back</button>
   </div>
 </body>
 </html>
