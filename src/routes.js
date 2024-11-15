@@ -49,7 +49,7 @@ router.post('/process-search', async (req, res) => {
  const result = await redisClient.call('ZINTERSTORE', tempKey, keys.length, ...keys, 'AGGREGATE', 'MIN')
 
  if (result > 0) {
-  await redisClient.expire(tempKey, 5)
+  await redisClient.expire(tempKey, 15)
   const values = await redisClient.zrange(tempKey, 99, 1, 'BYSCORE','REV')
     res.render('detail', { values });
  } else {
