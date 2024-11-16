@@ -9,7 +9,7 @@
 <body class="bg-gray-100">
   <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
     <h1 class="text-3xl font-bold text-center text-gray-800">
-      Directory (<%= hashes.length %>)
+      Directory (<a href="/FC739934-72D0-4BC0-940C-CCB2CBE0FC5D.jpeg" target="_blank"><%= hashes.length %></a>)
     </h1>
 
     <button onclick="window.history.back()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600">Back</button>
@@ -21,6 +21,7 @@
           <th class="w-1/4 px-4 py-2 text-left bg-gray-100">Name</th> 
           <th class="w-1/4 px-4 py-2 text-left bg-gray-100">Model</th> 
           <th class="w-1/4 px-4 py-2 text-left bg-gray-100">Capacity</th> 
+          <th class="w-1/4 px-4 py-2 text-left bg-gray-100">Status</th>
           <th class="w-1/4 px-4 py-2 text-left bg-gray-100">Description</th> 
         </tr> 
       </thead> 
@@ -31,6 +32,11 @@
             <td class="px-4 py-2"><%= hash.name %></td> 
             <td class="px-4 py-2"><%= hash.model %></td> 
             <td class="px-4 py-2"><%= hash.capacity %></td> 
+            <td class="px-4 py-2">
+              <%- hash.status==='active'? '<b>': ''%>
+              <%= hash.status %>
+              <%- hash.status==='active'? '</b>': ''%>
+            </td>
             <td class="px-4 py-2"><%= hash.description %></td> 
           </tr> 
           <% }) %> 

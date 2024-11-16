@@ -41,7 +41,7 @@ const rl = readline.createInterface({
 
 // Function to print header 
 const printHeader = (id, name) => {
-    console.log(`HMSET DIRINDEX:DIR:${id} name "${name}" model "What brand" capacity "What size" description "What purpose"`)
+    console.log(`HMSET DIRINDEX:DIR:${id} name "${name}" model "What brand" capacity "What size" status "archive/active" description "What purpose"`)
     console.log()
 }
 
