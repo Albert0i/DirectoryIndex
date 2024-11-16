@@ -8,8 +8,12 @@
 </head>
 <body class="bg-gray-100">
   <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-    <h1 class="text-3xl font-bold text-center text-gray-800">Directory</h1>
+    <h1 class="text-3xl font-bold text-center text-gray-800">
+      Directory (<%= hashes.length %>)
+    </h1>
+
     <button onclick="window.history.back()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600">Back</button>
+
     <table class="min-w-full bg-white mt-6"> 
       <thead> 
         <tr> 
@@ -32,7 +36,11 @@
           <% }) %> 
       </tbody> 
     </table>
-    <button onclick="window.history.back()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600">Back</button>
+
+    <% if (hashes.length > 0) { %>
+      <button onclick="window.history.back()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600">Back</button>
+    <% } %>
+
   </div>
 </body>
 </html>
