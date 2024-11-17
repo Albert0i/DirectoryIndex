@@ -5,23 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced Search</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <script>
+    function addKeywordInput() {
+      const container = document.getElementById('keyword-container');
+      const inputCount = container.getElementsByTagName('input').length;
+      const newInput = document.createElement('input');
+      newInput.type = 'text';
+      newInput.name = 'keywords';
+      newInput.placeholder = `Keyword ${inputCount + 1}`;
+      newInput.className = 'border p-2 rounded focus:outline-none focus:border-blue-500';
+      container.appendChild(newInput);
+      newInput.focus()
+    }
+  </script>
 </head>
 <body class="bg-gray-100">
   <div class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg">
-    <h1 class="text-3xl font-bold text-center text-gray-800">Advanced Search</h1>
+    <h1 class="text-3xl font-bold text-center text-gray-800">
+      Advanced Search
+    </h1>
 
     <button onclick="window.history.back()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600">Back</button>
 
     <form action="/process-search" method="POST" class="mt-2">
-      <div class="flex flex-col space-y-2">
-        <% for (let i = 0; i < 5; i++) { %>
+      <div id="keyword-container" class="flex flex-col space-y-2">
+        <% for (let i = 0; i < 3; i++) { %>
           <input type="text" name="keywords" placeholder="Keyword <%= i + 1 %>" class="border p-2 rounded focus:outline-none focus:border-blue-500" <%= ( i == 0 ? 'required autoFocus' : '') %>>
         <% } %>
       </div>
-      
+      <button type="button" onclick="addKeywordInput()" class="bg-green-500 text-white px-4 py-2 rounded mt-4 hover:bg-green-600">
+        Add more
+      </button>
+
       <div class="flex justify-left mt-2">
-          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Search</button> 
-          <button type="reset" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-gray-600 ml-4">Reset</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Search</button> 
+        <button type="reset" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-gray-600 ml-4">Reset</button>
       </div>
 
     </form>
