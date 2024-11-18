@@ -2,6 +2,14 @@ import fs from 'fs';
 import readline from 'readline';
 import path from 'path';
 
+// All block characters 
+const fullBlock = '\u2588';         // Output: █
+const halfBlockUpper = '\u2580';    // Output: ▀
+const halfBlockLower = '\u2584';    // Output: ▄
+const lightShade = '\u2591';        // Output: ░
+const mediumShade = '\u2592';       // Output: ▒
+const darkShade = '\u2593';         // Output: ▓
+
 // Get command line arguments
 const [filename, id, name, omitStart, omitEnd] = process.argv.slice(2);
 
@@ -58,6 +66,7 @@ const printPathSegments = (line, id, name, omitStart, omitEnd) => {
 
     // Print each segment
     selectedParts.forEach((part, index) => {
+        // Replace '\\' with '\\\\' 
         console.log(`ZADD "DIRINDEX:INDEX:${part.toUpperCase()}" ${id} "\\\\\\\\${name}${line.substring(2).replace(/\\/g, '\\\\')}"`)
     });
 };
@@ -67,8 +76,8 @@ printHeader(id, name)
 
 // Read the file line by line
 rl.on('line', (line) => {
-    // Start processing... 
-    printPathSegments(line, id, name, omitStart, omitEnd);
+    // Start processing... replace '?' with a block character. 
+    printPathSegments(line.replace(/\?/g, mediumShade), id, name, omitStart, omitEnd);
     console.log()
 });
 
@@ -77,23 +86,30 @@ rl.on('close', () => {
     // Finished processing the file.
 });
 
-/*
+/* 
+   Command to generate directory list 
+   ----------------------------------
    dir /S /B | findstr /V /R /C:"\\\." | findstr /V /R /C:"\\node_modules" | findstr /V /R /C:"\.tmp" > output.dir.txt
+
+   or 
 
    dir F:\Animation /S /B | findstr /V /R /C:"\\\." | findstr /V /R /C:"\\node_modules" | findstr /V /R /C:"\.tmp" >> output.dir.txt
 
-   node src/processDir.js data/TV-500M.dir.txt 100 TV-500M 2 0 > data/TV-500M.redis
+
+   Command to generate Redis command
+   ---------------------------------
+   node src/processDir.js data/TV-500G.dir.txt 100 TV-500G 2 0 > data/TV-500G.redis
    node src/processDir.js data/TV-1T.dir.txt 101 TV-1T 2 0 > data/TV-1T.redis
    node src/processDir.js data/TV-2T.dir.txt 102 TV-2T 2 0 > data/TV-2T.redis
    node src/processDir.js data/TV-5T.dir.txt 105 TV-5T 2 0 > data/TV-5T.redis
 
-  node src/processDir.js data/BACKUP1T-B.dir.txt 1 BACKUP1T-B 2 0 > data/BACKUP1T-B.redis
-  node src/processDir.js data/DATA1T-S.dir.txt 2 DATA1T-S 2 0 > data/DATA1T-S.redis
-  node src/processDir.js data/DATA2T-W.dir.txt 3 DATA2T-W 2 0 > data/DATA2T-W.redis
+   node src/processDir.js data/BACKUP1T-B.dir.txt 1 BACKUP1T-B 2 0 > data/BACKUP1T-B.redis
+   node src/processDir.js data/DATA1T-S.dir.txt 2 DATA1T-S 2 0 > data/DATA1T-S.redis
+   node src/processDir.js data/DATA2T-W.dir.txt 3 DATA2T-W 2 0 > data/DATA2T-W.redis
 
-  node src/processDir.js data/DATA5T-W.dir.txt 4 DATA5T-W 2 0 > data/DATA5T-W.redis
-  node src/processDir.js data/DATA4T-W.dir.txt 5 DATA4T-W 2 0 > data/DATA4T-W.redis
-  node src/processDir.js data/DATA5T-W(2).dir.txt 6 DATA5T-W(2) 2 0 > data/DATA5T-W(2).redis
+   node src/processDir.js data/DATA5T-W.dir.txt 4 DATA5T-W 2 0 > data/DATA5T-W.redis
+   node src/processDir.js data/DATA4T-W.dir.txt 5 DATA4T-W 2 0 > data/DATA4T-W.redis
+   node src/processDir.js data/DATA5T-W(2).dir.txt 6 DATA5T-W(2) 2 0 > data/DATA5T-W(2).redis
 
-  node src/processDir.js data/BACKUP-5T(2024).dir.txt 7 BACKUP-5T(2024) 2 0 > data/BACKUP-5T(2024).redis
+   node src/processDir.js data/BACKUP-5T(2024).dir.txt 7 BACKUP-5T(2024) 2 0 > data/BACKUP-5T(2024).redis
 */
