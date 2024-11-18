@@ -5,6 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Directory Index | Welcome</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script>
+    async function pasteFromClipboard() {
+      try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById('keyword').value = text;
+        document.getElementById('keyword').focus()
+      } catch (err) {
+        console.error('Failed to read clipboard contents: ', err);
+      }
+    }
+
+    function clearInput() {
+      document.getElementById('keyword').value = '';
+      document.getElementById('keyword').focus()
+    }
+
+    function handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent the default form submission
+        document.getElementById('submit').click(); // Trigger the submit button
+      }
+    }
+  </script>
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body class="bg-gray-100">
@@ -21,9 +45,19 @@
 
     <form action="/content" method="GET" class="mt-2">
       <div class="flex flex-col">
-        <input type="text" name="keyword" placeholder="Enter keyword" class="border p-2 rounded focus:outline-none focus:border-blue-500" autofocus required>
+        <div class="flex flex-between">
+          <button type="button" onclick="pasteFromClipboard()" class="mr-2 bg-green-500 text-white px-2 py-1 rounded text-xs hover:bg-green-700" title="Paste">
+            <i class="fas fa-paste w-4"></i>
+          </button>
 
-        <button type="submit" class="bg-blue-500 text-white p-2 rounded mt-4 hover:bg-blue-600">Search</button>
+          <button type="button" onclick="clearInput()" class="mr-2 bg-green-500 text-white px-2 py-1 rounded text-xs hover:bg-green-700" title="Clear">
+            <i class="fas fa-times w-4"></i>
+          </button>
+  
+          <input type="text" name="keyword" id="keyword" placeholder="Enter keyword" onkeypress="handleKeyPress(event)" class="border p-2 rounded focus:outline-none focus:border-blue-500 w-screen" autofocus required>
+        </div>
+
+        <button type="submit" id="submit" class="bg-blue-500 text-white p-2 rounded mt-4 hover:bg-blue-600">Search</button>
       </div>
     </form>
 
