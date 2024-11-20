@@ -24,7 +24,7 @@ router.get('/detail/:key', async (req, res) => {
   const key = req.params.key
 
   if (key) {
-    const values = await redisClient.zrange(key, 99, 1, 'BYSCORE','REV')
+    const values = await redisClient.zrange(key, '+INF', 1, 'BYSCORE','REV')
     res.render('detail', { values });
   } else {
     console.error('Error fetching keys:', error); 
