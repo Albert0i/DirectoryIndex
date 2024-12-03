@@ -98,6 +98,9 @@ rl.on('close', () => {
 
    Command to generate Redis command
    ---------------------------------
+   node src/processDir.js data/DATA200G.dir.txt 82 DATA200G 2 0 > data/DATA200G.redis
+   node src/processDir.js data/DATA320G.dir.txt 83 DATA320G 4 0 > data/DATA320G.redis
+
    node src/processDir.js data/DATA160.dir.txt 91 DATA160 2 0 > data/DATA160.redis 
    node src/processDir.js data/DATA250.dir.txt 92 DATA250 2 0 > data/DATA250.redis       
    node src/processDir.js data/DATA500.dir.txt 95 DATA500 2 0 > data/DATA500.redis 
