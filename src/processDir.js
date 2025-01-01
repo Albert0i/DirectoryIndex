@@ -120,3 +120,14 @@ rl.on('close', () => {
 
    node src/processDir.js data/BACKUP-5T(2024).dir.txt 7 BACKUP-5T(2024) 2 0 > data/BACKUP-5T(2024).redis
 */
+/*
+2025/01/01: 
+
+node src/processDir.js data/TV-5T.dir.txt 105 TV-5T 2 0 > data/TV-5T.redis
+
+node src/processDir.js data/BACKUP-5T(2024).dir.txt 7 BACKUP-5T(2024) 2 0 > data/BACKUP-5T(2024).redis
+
+HMSET DIRINDEX:DIR:105 name "TV-5T" model "Seagate One Touch" capacity "5TB" status "active" description "Movies and TV episodes. Manufactured on 2023, Thailand. Last updated 2025/01/01."
+
+HMSET DIRINDEX:DIR:7 name "BACKUP-5T(2024)" model "Seagate One Touch" capacity "5TB" status "active" description "Movies and TV episodes. 2024~2025 .Manufactured on 2021, assembled in Thailand, product of China. Last updated 2025/01/01."
+*/
